@@ -13,3 +13,14 @@ Using PowerShell:
 	Invoke-WebRequest -Uri "http://url.goes/here" -OutFile "output.file"
 
 Consider always scripting downloads. 
+
+## Importing bookstore.csv
+
+   	psql -f ./load.sql
+
+## 1NF?
+
+Is the books table in normal form?
+Why / why not? 
+
+

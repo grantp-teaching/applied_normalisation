@@ -1,35 +1,30 @@
 -- Setup & load table for bulk bookstore file
 
+BEGIN;
+
 -- drop table
 drop table if exists books;
 
 -- create table to match bookstore.csv
 
--- Title,Url,Price,ISBN-10,ISBN,Author,Format,Pages,Publisher,Language,Weight,Dimensions,Case pack,Raw description,Availability,Item condition,Breadcrumbs,Images,Scraped at,Uniq id
-
+-- Title,Price,ISBN-10,Author,Format,Pages,Publisher,Language,Weight,Dimensions,Case pack,Availability
 create table books (
 Title text not null,
-Url text not null,
-Price decimal (10,2),
-ISBN10 text,
-ISBN text,
-Author text,
-Format text,
-Pages text,
-Publisher text,
-BookLanguage text,
-Weight text,
+Price decimal (10,2) not null,
+ISBN10 text not null,
+Author text not null,
+Format text not null,
+Pages bigint,
+Publisher text not null,
+BookLanguage text not null,
+Weight text not null,
 Dimensions text,
-Case_pack text,
-Raw_description text,
-Availability text,
-Item_condition text,
-Breadcrumbs text,
-Images text,
-Scraped_at text
---Uniq_id text
+Case_pack text not null,
+Availability text not null
 );
 
 -- client-side copy
-\copy books from 'bulk_bookstore_cleansed.csv' with csv header;
+\copy books from 'bookstore.csv' with csv header;
+
+COMMIT;
 
